@@ -1,0 +1,6 @@
+@TaskRPG.API_HostAddress = http://localhost:5001
+
+GET {{TaskRPG.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
