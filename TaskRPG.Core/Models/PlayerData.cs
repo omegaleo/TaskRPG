@@ -55,6 +55,10 @@ namespace TaskRPG.Core.Models
             }
         } // List of items in inventory
         
+        public int Currency { get; set; } // In-game currency
+        
+        public string SpriteData { get; set; } // Serialized sprite data
+        
         public PlayerData(string playerName)
         {
             Id = Guid.NewGuid();

@@ -1,13 +1,14 @@
 <Project Sdk="Godot.NET.Sdk/4.4.1">
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <TargetFramework Condition=" '$(GodotTargetPlatform)' == 'android' ">net9.0</TargetFramework>
     <EnableDynamicLoading>true</EnableDynamicLoading>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TaskRPG.Core\TaskRPG.Core.csproj" />
+    <PackageReference Include="OmegaLeo.HelperLib" Version="1.1.2" />
+    <PackageReference Include="OmegaLeo.HelperLib.Changelog" Version="1.1.2" />
+    <PackageReference Include="OmegaLeo.HelperLib.Game" Version="1.1.2" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include=".gitignore" />
+    <ProjectReference Include="..\TaskRPG.Core\TaskRPG.Core.csproj" />
   </ItemGroup>
 </Project>

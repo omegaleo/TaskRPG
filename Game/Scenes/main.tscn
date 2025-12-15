@@ -1,8 +1,120 @@
-[gd_scene load_steps=2 format=3 uid="uid://b47nh1mefjjwt"]
+[gd_scene load_steps=10 format=3 uid="uid://b47nh1mefjjwt"]
 
 [ext_resource type="Script" uid="uid://bjt3qjadgcnf2" path="res://Runtime/Test.cs" id="1_jjgbg"]
+[ext_resource type="Texture2D" uid="uid://cvi8agfxw5hbn" path="res://Textures/default_bg.tres" id="2_8gbba"]
+[ext_resource type="StyleBox" uid="uid://crcvo05ynfn4p" path="res://Styles/main_screen_panels.tres" id="2_bo1nx"]
+[ext_resource type="Script" uid="uid://cqdwkqx62x0pp" path="res://Runtime/TopBar.cs" id="4_6bp64"]
+[ext_resource type="LabelSettings" uid="uid://cfmrkoedj3a8n" path="res://Styles/info_lbl.tres" id="4_jjvhh"]
+[ext_resource type="LabelSettings" uid="uid://xpsas4r6rxug" path="res://Styles/info_sub_lbl.tres" id="5_kry3j"]
+[ext_resource type="LabelSettings" uid="uid://c0g67fj2gcexl" path="res://Styles/info_experience_lbl.tres" id="6_21xkr"]
+
+[sub_resource type="Gradient" id="Gradient_6bp64"]
+colors = PackedColorArray(0.523101, 0.363631, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_344ge"]
+gradient = SubResource("Gradient_6bp64")
+width = 192
+height = 32
+fill_from = Vector2(0, 1)
 
 [node name="MainScreen" type="Control"]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_jjgbg")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_8gbba")
+
+[node name="TopBar" type="Panel" parent="." node_paths=PackedStringArray("_playerNameLabel", "_playerLevelLabel", "_playerExperienceLabel", "_playerExperienceBar", "_playerCurrencyLabel")]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 129.0
+grow_horizontal = 2
+theme_override_styles/panel = ExtResource("2_bo1nx")
+script = ExtResource("4_6bp64")
+_playerNameLabel = NodePath("MarginContainer/HBoxContainer/VBoxContainer/lblName")
+_playerLevelLabel = NodePath("MarginContainer/HBoxContainer/VBoxContainer/lblLevel")
+_playerExperienceLabel = NodePath("MarginContainer/HBoxContainer/VBoxContainer/pbExperience/lblProgress")
+_playerExperienceBar = NodePath("MarginContainer/HBoxContainer/VBoxContainer/pbExperience")
+_playerCurrencyLabel = NodePath("MarginContainer/HBoxContainer/VBoxContainer2/lblCurrency")
+
+[node name="MarginContainer" type="MarginContainer" parent="TopBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TopBar/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TopBar/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="lblName" type="Label" parent="TopBar/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "ProfessorLeo"
+label_settings = ExtResource("4_jjvhh")
+vertical_alignment = 1
+
+[node name="lblLevel" type="Label" parent="TopBar/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Lvl 99"
+label_settings = ExtResource("5_kry3j")
+vertical_alignment = 1
+
+[node name="pbExperience" type="TextureProgressBar" parent="TopBar/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture_progress = SubResource("GradientTexture2D_344ge")
+
+[node name="lblProgress" type="Label" parent="TopBar/MarginContainer/HBoxContainer/VBoxContainer/pbExperience"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0/100"
+label_settings = ExtResource("6_21xkr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="TopBar/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="lblCurrency" type="RichTextLabel" parent="TopBar/MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Coins: 100
+"
+horizontal_alignment = 2
+
+[node name="NavBar" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -122.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = ExtResource("2_bo1nx")
